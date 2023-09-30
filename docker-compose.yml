@@ -1,0 +1,13 @@
+  db:
+    image: postgres:latest
+    volumes:
+      - ./migration/migration_file.sql:/docker-endtrypoint-initdb.d/cp.sql
+      - ./db:/var/lib/postgresql/data
+    container_name: postgresql_container_name
+    ports:
+      - exportPort:5432
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_DB=database_name
+      - POSTGRES_PASSWORD=password
+    restart: unless-stopped
